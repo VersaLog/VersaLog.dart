@@ -108,6 +108,7 @@ class VersaLog {
     return stack[3].trim();
   }
 
+
   void _cleanupOldLogs({int days = 7}) {
     final dir = Directory('log');
     if (!dir.existsSync()) return;
@@ -121,7 +122,6 @@ class VersaLog {
 
       if (diff.inDays >= days) {
         entity.deleteSync();
-
         if (!silent) {
           info("[LOG CLEANUP] removed: ${entity.path}");
         }
@@ -136,13 +136,11 @@ class VersaLog {
     final dir = Directory('log');
     if (!dir.existsSync()) dir.createSync();
 
-    final file = File(
-        'log/${DateTime.now().toString().substring(0, 10)}.log');
+    final file =
+        File('log/${DateTime.now().toString().substring(0, 10)}.log');
 
-    file.writeAsStringSync(
-      "${item.text}\n",
-      mode: FileMode.append,
-    );
+    file.writeAsStringSync("${item.text}\n",
+        mode: FileMode.append);
 
     final today = DateTime.now();
 
@@ -153,8 +151,7 @@ class VersaLog {
     }
   }
 
-  void _log(String msg, LogLevel level,
-      [Object? customTag]) {
+  void _log(String msg, LogLevel level, [Object? customTag]) {
     final color = colors[level] ?? "";
     final symbol = symbols[level] ?? "[?]";
     final typeStr = level.name.toUpperCase();
@@ -175,9 +172,7 @@ class VersaLog {
         tags.isNotEmpty ? tags.map((e) => "[$e]").join() : "";
 
     final caller =
-        (showFile || mode == LogMode.file)
-            ? _getCaller()
-            : "";
+        (showFile || mode == LogMode.file) ? _getCaller() : "";
 
     String formatted = "";
     String plain = "";
@@ -214,27 +209,48 @@ class VersaLog {
         break;
     }
 
-    if (!silent) {
-      print(formatted);
-    }
+    if (!silent) print(formatted);
 
     _queue.add(_LogItem(plain, level));
   }
 
-  void info(String m, [Object? t]) =>
-      _log(m, LogLevel.info, t);
-
-  void error(String m, [Object? t]) =>
-      _log(m, LogLevel.error, t);
-
-  void warning(String m, [Object? t]) =>
-      _log(m, LogLevel.warning, t);
-
-  void debug(String m, [Object? t]) =>
-      _log(m, LogLevel.debug, t);
-
+  void info(String m, [Object? t]) => _log(m, LogLevel.info, t);
+  void error(String m, [Object? t]) => _log(m, LogLevel.error, t);
+  void warning(String m, [Object? t]) => _log(m, LogLevel.warning, t);
+  void debug(String m, [Object? t]) => _log(m, LogLevel.debug, t);
   void critical(String m, [Object? t]) =>
       _log(m, LogLevel.critical, t);
+
+  void progress(String title, int current, int total,
+      [Object? t]) {
+    final percent =
+        total > 0 ? ((current / total) * 100).floor() : 0;
+    final msg = "$title : $percent% ($current/$total)";
+    _log(msg, LogLevel.info, t);
+  }
+
+  void step(String title, int step, int total,
+      [Object? t]) {
+    final msg = "[STEP $step/$total] $title";
+    _log(msg, LogLevel.info, t);
+  }
+
+  Future<T> timer<T>(
+      String title, Future<T> Function() task,
+      [Object? t]) async {
+    final sw = Stopwatch()..start();
+
+    _log("$title : start", LogLevel.info, t);
+
+    try {
+      return await task();
+    } finally {
+      sw.stop();
+      final sec = (sw.elapsedMilliseconds / 1000)
+          .toStringAsFixed(2);
+      _log("$title : done (${sec}s)", LogLevel.info, t);
+    }
+  }
 
   void board() {
     if (!silent) {
