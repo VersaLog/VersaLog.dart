@@ -1,6 +1,6 @@
 name: versalog_dart
 description: A simple and customizable logger for Dart
-version: 1.7.3
+version: 1.7.4
 homepage: https://github.com/yourname/yourrepo
 repository: https://github.com/VersaLog/VersaLog.dart
 issue_tracker: https://github.com/VersaLog/VersaLog.dart/issues
