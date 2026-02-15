@@ -1,14 +1,16 @@
-## What is VersaLog.py?
+## What is VersaLog.dart?
 
-[![PyPI version](https://badge.fury.io/py/VersaLog.svg)](https://badge.fury.io/py/VersaLog)
-[![Downloads](https://pepy.tech/badge/VersaLog)](https://pepy.tech/project/VersaLog)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![pub package](https://img.shields.io/pub/v/versalog_dart.svg)](https://pub.dev/packages/versalog_dart)
+[![pub likes](https://img.shields.io/pub/likes/versalog_dart)](https://pub.dev/packages/versalog_dart/score)
+[![pub points](https://img.shields.io/pub/points/versalog_dart)](https://pub.dev/packages/versalog_dart/score)
+[![Dart](https://img.shields.io/badge/Dart-3.0+-blue.svg)](https://dart.dev/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Discord](https://img.shields.io/badge/Discord-Support%20Server-7289DA?style=flat&logo=discord)](https://discord.gg/9EAsByDV)
 
-What is VersaLog.dart?
-VersaLog is a powerful and flexible logging library for Python.
+VersaLog is a powerful and flexible logging library for Dart.  
 It supports everything from simple usage to advanced, highly customizable configurations to meet a wide range of needs.
+
+---
 
 ## Support
 
@@ -16,10 +18,12 @@ Join our Discord server for support, questions, and community discussions:
 
 [![Discord](https://img.shields.io/badge/Discord-Support%20Server-7289DA?style=flat&logo=discord)](https://discord.gg/9EAsByDV)
 
+---
+
 ## Installation
 
-```
-pip install VersaLog
+```bash
+dart pub add versalog_dart
 ```
 
 ### Enum
@@ -46,12 +50,50 @@ pip install VersaLog
 | `catch_exceptions` | True : Automatically catch unhandled exceptions and log them as critical                                                                                                        |
 
 ## Tag set
+````dart
 
-````python
+import 'package:versalog_dart/versalog_dart.dart';
 
-# one tag
-logger = VersaLog(enum="detailed", tag="a", show_tag=True)
+void main() {
 
-# two tag
-logger = VersaLog(enum="detailed", tag=["a", "a"], show_tag=True)
-```
+  // one tag
+  final logger1 = VersaLog(
+    enumMode: "detailed",
+    tag: "APP",
+    showTag: true,
+  );
+
+  logger1.info("Application started");
+
+
+  // multiple tags
+  final logger2 = VersaLog(
+    enumMode: "detailed",
+    tag: ["API", "AUTH"],
+    showTag: true,
+  );
+
+  logger2.warning("Token expired");
+
+}
+
+````
+
+## Basic Usage
+
+````dart
+
+import 'package:versalog_dart/versalog_dart.dart';
+
+void main() {
+
+  final log = VersaLog();
+
+  log.info("Application started");
+  log.warning("Low memory");
+  log.error("Unexpected error");
+  log.debug("Debug info");
+  log.critical("System failure");
+
+}
+````
