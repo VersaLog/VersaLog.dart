@@ -5,7 +5,7 @@
 [![pub points](https://img.shields.io/pub/points/versalog_dart)](https://pub.dev/packages/versalog_dart/score)
 [![Dart](https://img.shields.io/badge/Dart-3.0+-blue.svg)](https://dart.dev/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Discord](https://img.shields.io/badge/Discord-Support%20Server-7289DA?style=flat&logo=discord)](https://discord.gg/9EAsByDV)
+[![Discord](https://img.shields.io/badge/Discord-Support%20Server-7289DA?style=flat&logo=discord)](https://discord.gg/Ms2ejEES)
 
 VersaLog is a powerful and flexible logging library for Dart.  
 It supports everything from simple usage to advanced, highly customizable configurations to meet a wide range of needs.
@@ -16,7 +16,7 @@ It supports everything from simple usage to advanced, highly customizable config
 
 Join our Discord server for support, questions, and community discussions:
 
-[![Discord](https://img.shields.io/badge/Discord-Support%20Server-7289DA?style=flat&logo=discord)](https://discord.gg/9EAsByDV)
+[![Discord](https://img.shields.io/badge/Discord-Support%20Server-7289DA?style=flat&logo=discord)](https://discord.gg/Ms2ejEES)
 
 ---
 
