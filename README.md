@@ -12,6 +12,66 @@ It supports everything from simple usage to advanced, highly customizable config
 
 ---
 
+## Feature
+
+### Basic Logging
+
+- Supports standard log levels:
+   - `INFO`, `ERROR`, `WARNING`, `DEBUG`, `CRITICAL`
+- Colored output for better readability
+- Symbol-based prefixes (e.g. `[+]`, `[-]`, `[!]`)
+
+### Multiple Output Formats
+
+**Easily switch between different log styles:**
+
+- `simple` → `[+] message`
+- `simple2` → `[TIME] [+] message`
+- `detailed` → `[TIME][LEVEL] : message`
+- `file` → `[FILE:LINE][LEVEL] message`
+
+### Tag System
+
+- Add custom tags to logs
+- Supports multiple tags (e.g. `["API", "AUTH"]`)
+- Optional default tags
+
+### File & Line Tracking
+
+- Display caller file name and line number
+- Useful for debugging large projects
+
+### Log File Saving
+
+- Automatically save logs to files
+- Output path: `./log/YYYY-MM-DD.log`
+- Select which log levels to save
+
+### Auto Cleanup
+
+- Automatically deletes old log files (default: 7 days)
+- Keeps your log directory clean
+
+### Auto Cleanup
+
+- Disable console output
+- Useful for background services
+
+### Exception Handling
+
+- Automatically captures unhandled exceptions
+- Logs them as `CRITICAL`
+
+### Desktop Notifications
+
+- Optional desktop alerts for errors and critical logs
+- Uses `plyer.notification`
+
+### Asynchronous Logging
+
+- Non-blocking log processing using threads and queues
+- Improves performance in high-load environments
+
 ## Support
 
 Join our Discord server for support, questions, and community discussions:
